@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prakshit — indie dev</title>
-  <meta name="description" content="Indie dev from Hyderabad. Building games, tools, and experiments. HTML/CSS strong, JS leveling up. Age still in 8th grade." />
+  <meta name="description" content="Indie dev from Hyderabad. Building games, tools, and experiments. HTML/CSS strong, JS leveling up." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -98,6 +98,12 @@
       border: 0.5px solid var(--border2);
       color: var(--muted);
       background: transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .pill:hover {
+      border-color: var(--border2);
+      color: var(--text);
     }
 
     /* SECTION LABEL */
@@ -124,12 +130,13 @@
       padding: 1.25rem;
       text-decoration: none;
       display: block;
-      transition: border-color 0.15s, background 0.15s;
+      transition: border-color 0.15s, background 0.15s, transform 0.15s;
     }
 
     .card:hover {
       border-color: var(--border2);
       background: var(--bg3);
+      transform: translateY(-2px);
     }
 
     .card-top {
@@ -153,6 +160,11 @@
       font-size: 16px;
       color: var(--faint);
       line-height: 1;
+      transition: color 0.15s;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--muted);
     }
 
     .card-title {
@@ -188,13 +200,6 @@
     .elem { background: #0a2a1a; }
     .music { background: #1a0a2e; }
     .adfree { background: #2a1a0a; }
-
-    /* DIVIDER */
-    hr {
-      border: none;
-      border-top: 0.5px solid var(--border);
-      margin: 2.5rem 0;
-    }
     .learnsphere { background: #2a1a0a; }
 
     /* DIVIDER */
@@ -235,6 +240,19 @@
       vertical-align: middle;
     }
 
+    /* BETA BADGE */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(62, 207, 106, 0.1);
+      color: var(--green);
+      border: 0.5px solid rgba(62, 207, 106, 0.3);
+      margin-left: 6px;
+    }
+
     @media (max-width: 480px) {
       .hero-name { font-size: 32px; }
       .projects { grid-template-columns: 1fr; }
@@ -246,37 +264,37 @@
 
     <div class="hero">
       <div class="tag">
-        <span class="status-dot"></span>
+        <span class="status-dot" aria-label="Available for collaborations"></span>
         open to collabs
       </div>
-      <div class="hero-name">
+      <h1 class="hero-name">
         Prakshit<br>
         <span>— indie dev, Hyd.</span>
-      </div>
+      </h1>
       <p class="hero-sub">
         Building games, tools, and experiments since 5th grade.
         HTML/CSS strong. JS leveling up. Low-spec optimizer. Chaotic but ships.
       </p>
-      <div class="stack">
-        <span class="pill">HTML</span>
-        <span class="pill">CSS</span>
-        <span class="pill">JavaScript</span>
-        <span class="pill">Game Design</span>
-        <span class="pill">Linux / OS</span>
-        <span class="pill">Low-spec builds</span>
+      <div class="stack" role="list">
+        <span class="pill" role="listitem">HTML</span>
+        <span class="pill" role="listitem">CSS</span>
+        <span class="pill" role="listitem">JavaScript</span>
+        <span class="pill" role="listitem">Game Design</span>
+        <span class="pill" role="listitem">Linux / OS</span>
+        <span class="pill" role="listitem">Low-spec builds</span>
       </div>
     </div>
 
-    <div class="section-label">shipped projects</div>
+    <h2 class="section-label">shipped projects</h2>
 
     <div class="projects">
 
       <a class="card" href="https://mepython313.github.io/RPC-ai" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="card-icon rpc">🧠</div>
-          <span class="card-arrow">↗</span>
+          <div class="card-icon rpc" aria-label="Brain icon">🧠</div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
-        <div class="card-title">RPC-AI</div>
+        <h3 class="card-title">RPC-AI</h3>
         <p class="card-desc">Rock Paper Scissors vs an AI that actually learns your patterns. Tracks behavior, adapts modes, shows live confidence.</p>
         <div class="card-tags">
           <span class="ctag">JS</span>
@@ -287,10 +305,10 @@
 
       <a class="card" href="https://mepython313.github.io/element-game" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="card-icon elem">⚗️</div>
-          <span class="card-arrow">↗</span>
+          <div class="card-icon elem" aria-label="Alchemy/chemistry icon">⚗️</div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
-        <div class="card-title">Element Speedrun</div>
+        <h3 class="card-title">Element Speedrun</h3>
         <p class="card-desc">Periodic table quiz with a global leaderboard. Race to name elements. Real storage. Real competition.</p>
         <div class="card-tags">
           <span class="ctag">JS</span>
@@ -301,10 +319,10 @@
 
       <a class="card" href="https://mepython313.github.io/music-player" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="card-icon music">🎵</div>
-          <span class="card-arrow">↗</span>
+          <div class="card-icon music" aria-label="Music note icon">🎵</div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
-        <div class="card-title">HyperPlayer X</div>
+        <h3 class="card-title">HyperPlayer X</h3>
         <p class="card-desc">A full music player running in your browser. Load folders, see waveforms, rate tracks, switch themes.</p>
         <div class="card-tags">
           <span class="ctag">Web Audio API</span>
@@ -315,23 +333,26 @@
 
       <a class="card" href="https://mepython313.github.io/ad-free/ad-free.html" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="card-icon adfree">🛡️</div>
-          <span class="card-arrow">↗</span>
+          <div class="card-icon adfree" aria-label="Shield icon">🛡️</div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
-        <div class="card-title">Ad-Free</div>
+        <h3 class="card-title">Ad-Free</h3>
         <p class="card-desc">A tool built out of frustration. Clean, purposeful, and opinionated — exactly how it should be.</p>
         <div class="card-tags">
           <span class="ctag">utility</span>
           <span class="ctag">browser</span>
         </div>
       </a>
-      <p><bold>Latest by Prakshit! (Under Development)</bold></p>
+
       <a class="card" href="https://mepython313.github.io/LearnSphere" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="card-icon learnsphere">🌎</div>
-          <span class="card-arrow">↗</span>
+          <div class="card-icon learnsphere" aria-label="Globe icon">🌎</div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
-        <div class="card-title">LearnSphere</div>
+        <h3 class="card-title">
+          LearnSphere
+          <span class="badge">Beta</span>
+        </h3>
         <p class="card-desc">A place where teachers can upload quizzes for free and students can attempt them!</p>
         <div class="card-tags">
           <span class="ctag">Teacher's help</span>
@@ -345,9 +366,9 @@
 
     <footer>
       <span>Prakshit · Hyderabad · 2026</span>
-      <a href="https://github.com/mepython313" target="_blank" rel="noopener">
-        <svg class="gh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+      <a href="https://github.com/mepython313" target="_blank" rel="noopener" title="Visit GitHub profile">
+        <svg class="gh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
         </svg>
         mepython313
       </a>
