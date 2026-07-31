@@ -74,7 +74,7 @@ const BUILDS = [
   },
   {
     tag: "video",
-    title: "MiniTube XP (ad-free)",
+    title: "TubeXP",
     desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
     link: "https://github.com/MePython313/ad-free",
     linkText: "repo ↗",
