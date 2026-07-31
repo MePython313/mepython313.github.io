@@ -292,6 +292,7 @@ a:hover { text-decoration: underline; }
 .footer-phone { margin-top: 8px; }
 .footer-phone a { color: var(--text); }
 .footer-phone a:hover { color: var(--cyan); text-decoration: none; }
+.footer-note { color: var(--muted); }
 
 /* ---------- scroll reveal ---------- */
 .reveal {

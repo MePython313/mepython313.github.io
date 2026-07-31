@@ -67,9 +67,16 @@ const BUILDS = [
   },
   {
     tag: "ai",
-    title: "RPC-ai",
+    title: "RPS-ai",
     desc: "An AI that learns to beat you at rock-paper-scissors.",
-    link: "https://github.com/MePython313/RPC-ai",
+    link: "https://github.com/MePython313/RPS-ai",
+    linkText: "repo ↗",
+  },
+  {
+    tag: "video",
+    title: "MiniTube XP (ad-free)",
+    desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
+    link: "https://github.com/MePython313/ad-free",
     linkText: "repo ↗",
   },
 ];
