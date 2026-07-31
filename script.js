@@ -76,13 +76,6 @@ const BUILDS = [
     site: "https://mepython313.github.io/ad-free/",
     linkText: "repo ↗",
   },
-  {
-    tag: "os sim",
-    title: "PGOS-sim",
-    desc: "An OS simulator — my way of digging under the hood of how operating systems work.",
-    link: "https://github.com/MePython313/PGOS-sim",
-    linkText: "repo ↗",
-  },
 ];
 
 function renderBuilds() {
