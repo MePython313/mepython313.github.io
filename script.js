@@ -106,7 +106,7 @@ function initReveal() {
 /* ---------- console easter egg ---------- */
 function consoleEgg() {
   console.log(
-    "%c🐍 MePython313%c — thanks for peeking under the hood.\n%c> ./ship_it --now",
+    "%c🐍 MePython313 v2%c — thanks for peeking under the hood.\n%c> ./ship_it --now",
     "color:#3dff8b;font-size:16px;font-weight:bold",
     "color:#e6e6f0;font-size:13px",
     "color:#00f0ff;font-size:13px;font-family:monospace"

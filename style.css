@@ -119,15 +119,19 @@ a:hover { text-decoration: underline; }
   color: var(--cyan);
   margin: 18px 0 26px;
   min-height: 2em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .cursor-block {
+  flex: none;
   display: inline-block;
   width: 0.6em;
   height: 1.1em;
   background: var(--cyan);
   margin-left: 4px;
-  vertical-align: text-bottom;
+  vertical-align: middle;
   animation: blink 1s steps(1) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
