@@ -289,6 +289,10 @@ a:hover { text-decoration: underline; }
 }
 .footer-tip { margin-top: 6px; opacity: 0.7; }
 
+.footer-phone { margin-top: 8px; }
+.footer-phone a { color: var(--text); }
+.footer-phone a:hover { color: var(--cyan); text-decoration: none; }
+
 /* ---------- scroll reveal ---------- */
 .reveal {
   opacity: 0;
