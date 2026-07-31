@@ -49,6 +49,7 @@ const BUILDS = [
     title: "RPS-ai",
     desc: "An AI that learns to beat you at rock-paper-scissors.",
     link: "https://github.com/MePython313/RPS-ai",
+    site: "https://mepython313.github.io/RPS-ai/",
     linkText: "repo ↗",
   },
   {
@@ -56,6 +57,7 @@ const BUILDS = [
     title: "element-game",
     desc: "Name as many elements as you can. Can you hit the leaderboard?",
     link: "https://github.com/MePython313/element-game",
+    site: "https://mepython313.github.io/element-game/",
     linkText: "repo ↗",
   },
   {
@@ -63,6 +65,7 @@ const BUILDS = [
     title: "HyperPlayer-X",
     desc: "My music player project — built for speed and dark-mode vibes.",
     link: "https://github.com/MePython313/music-player",
+    site: "https://mepython313.github.io/music-player/",
     linkText: "repo ↗",
   },
   {
@@ -70,6 +73,7 @@ const BUILDS = [
     title: "TubeXP",
     desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
     link: "https://github.com/MePython313/ad-free",
+    site: "https://mepython313.github.io/ad-free/",
     linkText: "repo ↗",
   },
   {
@@ -89,7 +93,10 @@ function renderBuilds() {
         <span class="card-tag">${b.tag}</span>
         <h3>${b.title}</h3>
         <p>${b.desc}</p>
-        <a href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>
+        <div class="card-links">
+          <a href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>
+          ${b.site ? `<a href="${b.site}" target="_blank" rel="noopener">site ↗</a>` : ""}
+        </div>
       </article>`
   ).join("");
 }
