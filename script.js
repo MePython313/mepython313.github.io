@@ -8,7 +8,7 @@ const TYPED_LINES = [
   "> ./ship_it --now",
 ];
 
-const typeEl = document.getElementById("typewriter");
+const typeEl = document.getElementById("typed-text");
 
 function typewriter(lines, el, speed = 55, pause = 1400) {
   let lineIdx = 0;
