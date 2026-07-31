@@ -351,6 +351,13 @@ a:hover { text-decoration: underline; }
 /* ---------- contact ---------- */
 .contact-links { display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap; }
 
+.contact-note {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
 /* ---------- footer ---------- */
 .footer {
   border-top: 1px solid var(--border);
@@ -361,11 +368,6 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
 }
 .footer-tip { margin-top: 6px; opacity: 0.7; }
-
-.footer-phone { margin-top: 8px; }
-.footer-phone a { color: var(--text); }
-.footer-phone a:hover { color: var(--cyan); text-decoration: none; }
-.footer-note { color: var(--muted); }
 
 /* ---------- scroll reveal ---------- */
 .reveal {
