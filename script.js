@@ -45,17 +45,10 @@ function typewriter(lines, el, speed = 55, pause = 1400) {
 /* ---------- builds cards ---------- */
 const BUILDS = [
   {
-    tag: "music",
-    title: "HyperPlayer-X",
-    desc: "My music player project — built for speed and dark-mode vibes.",
-    link: "https://github.com/MePython313/music-player",
-    linkText: "repo ↗",
-  },
-  {
-    tag: "os sim",
-    title: "PGOS-sim",
-    desc: "An OS simulator — my way of digging under the hood of how operating systems work.",
-    link: "https://github.com/MePython313/PGOS-sim",
+    tag: "ai",
+    title: "RPS-ai",
+    desc: "An AI that learns to beat you at rock-paper-scissors.",
+    link: "https://github.com/MePython313/RPS-ai",
     linkText: "repo ↗",
   },
   {
@@ -66,10 +59,10 @@ const BUILDS = [
     linkText: "repo ↗",
   },
   {
-    tag: "ai",
-    title: "RPS-ai",
-    desc: "An AI that learns to beat you at rock-paper-scissors.",
-    link: "https://github.com/MePython313/RPS-ai",
+    tag: "music",
+    title: "HyperPlayer-X",
+    desc: "My music player project — built for speed and dark-mode vibes.",
+    link: "https://github.com/MePython313/music-player",
     linkText: "repo ↗",
   },
   {
@@ -77,6 +70,13 @@ const BUILDS = [
     title: "TubeXP",
     desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
     link: "https://github.com/MePython313/ad-free",
+    linkText: "repo ↗",
+  },
+  {
+    tag: "os sim",
+    title: "PGOS-sim",
+    desc: "An OS simulator — my way of digging under the hood of how operating systems work.",
+    link: "https://github.com/MePython313/PGOS-sim",
     linkText: "repo ↗",
   },
 ];
