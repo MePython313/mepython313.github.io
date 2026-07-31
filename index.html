@@ -31,6 +31,7 @@
         <span class="prompt">&gt;</span> Prakshit
       </h1>
       <p class="hero-tagline"><span id="typed-text"></span><span class="cursor-block" aria-hidden="true"></span></p>
+      <button id="secret-btn" class="secret-btn" title="psst">psst... yes you! click to know a secret</button>
       <div class="hero-badges">
         <span class="badge badge-status"><span class="dot"></span> open to collabs</span>
         <span class="badge">games</span>
@@ -108,6 +109,15 @@
     <p class="footer-phone"><a href="tel:+917391001270">📞 +91 73910 01270</a> <span class="footer-note">— please don't spam 🙏</span></p>
     <p class="footer-tip">psst — open the console 👀</p>
   </footer>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <div id="secret-overlay" class="secret-overlay hidden">
+    <div class="secret-card">
+      <h2>I got a new laptop. less goooo! 🎉</h2>
+      <p class="secret-sub">that was the secret, btw</p>
+      <button class="btn btn-ghost" id="secret-close">close ✕</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

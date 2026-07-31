@@ -120,6 +120,84 @@ function consoleEgg() {
   );
 }
 
+/* ---------- secret button: confetti + big reveal ---------- */
+const secretBtn = document.getElementById("secret-btn");
+const secretOverlay = document.getElementById("secret-overlay");
+const secretClose = document.getElementById("secret-close");
+const confettiCanvas = document.getElementById("confetti-canvas");
+const confettiCtx = confettiCanvas.getContext("2d");
+
+const CONFETTI_COLORS = ["#00f0ff", "#ff2d78", "#a855f7", "#3dff8b", "#ffd166", "#ffffff"];
+let confettiParticles = [];
+let confettiRaf = null;
+
+function sizeConfetti() {
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener("resize", sizeConfetti);
+sizeConfetti();
+
+function launchConfetti() {
+  confettiParticles = [];
+  const count = window.innerWidth < 640 ? 140 : 220;
+  for (let i = 0; i < count; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2 + (Math.random() - 0.5) * 80,
+      y: window.innerHeight / 2 + (Math.random() - 0.5) * 40,
+      w: 6 + Math.random() * 8,
+      h: 9 + Math.random() * 11,
+      vx: (Math.random() - 0.5) * 16,
+      vy: -Math.random() * 15 - 4,
+      rot: Math.random() * Math.PI * 2,
+      vr: (Math.random() - 0.5) * 0.35,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      life: 1,
+      decay: 0.007 + Math.random() * 0.006,
+    });
+  }
+  if (confettiRaf) cancelAnimationFrame(confettiRaf);
+
+  const step = () => {
+    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    confettiParticles = confettiParticles.filter((p) => p.life > 0);
+    confettiParticles.forEach((p) => {
+      p.vy += 0.35; /* gravity */
+      p.vx *= 0.99;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life -= p.decay;
+      confettiCtx.save();
+      confettiCtx.globalAlpha = Math.max(0, p.life);
+      confettiCtx.translate(p.x, p.y);
+      confettiCtx.rotate(p.rot);
+      confettiCtx.fillStyle = p.color;
+      confettiCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      confettiCtx.restore();
+    });
+    if (confettiParticles.length > 0) {
+      confettiRaf = requestAnimationFrame(step);
+    } else {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiRaf = null;
+    }
+  };
+  step();
+}
+
+function revealSecret() {
+  launchConfetti();
+  secretOverlay.classList.remove("hidden");
+}
+
+secretBtn.addEventListener("click", revealSecret);
+secretOverlay.addEventListener("click", () => secretOverlay.classList.add("hidden"));
+secretClose.addEventListener("click", (e) => {
+  e.stopPropagation();
+  secretOverlay.classList.add("hidden");
+});
+
 /* ---------- boot ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
