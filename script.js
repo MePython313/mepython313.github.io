@@ -70,10 +70,18 @@ const BUILDS = [
   },
   {
     tag: "video",
-    title: "TubeXP",
+    title: "Ad-free youtube",
     desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
     link: "https://github.com/MePython313/ad-free",
     site: "https://mepython313.github.io/ad-free/",
+    linkText: "repo ↗",
+  },
+  {
+    tag: "button",
+    title: "Useless button",
+    desc: "A game where you just have to click a useless button.",
+    link: "https://github.com/Mepython313/useless-button",
+    site: "https://mepython313.github.io/useless-button/",
     linkText: "repo ↗",
   },
 ];
