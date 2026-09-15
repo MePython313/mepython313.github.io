@@ -1,138 +1,85 @@
-/* MePython313 homepage — small, dependency-free JS */
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-/* ---------- typewriter tagline ---------- */
-const TYPED_LINES = [
-  "Chaotic but ships.",
-  "Games, tools & experiments since 5th grade.",
-  "Low-spec friendly. High-spec ideas.",
-  "> ./ship_it --now",
-];
+const mobileNav = $('#mobile-nav');
+const navToggle = $('.nav-toggle');
 
-const typeEl = document.getElementById("typed-text");
-
-function typewriter(lines, el, speed = 55, pause = 1400) {
-  let lineIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
-
-  function tick() {
-    const line = lines[lineIdx];
-
-    if (!deleting) {
-      charIdx++;
-      el.textContent = line.slice(0, charIdx);
-      if (charIdx === line.length) {
-        deleting = true;
-        setTimeout(tick, pause);
-        return;
-      }
-      setTimeout(tick, speed);
-    } else {
-      charIdx--;
-      el.textContent = line.slice(0, charIdx);
-      if (charIdx === 0) {
-        deleting = false;
-        lineIdx = (lineIdx + 1) % lines.length;
-        setTimeout(tick, 400);
-        return;
-      }
-      setTimeout(tick, 28);
-    }
-  }
-  tick();
-}
-
-/* ---------- builds cards ---------- */
-const BUILDS = [
-  {
-    tag: "ai",
-    title: "RPS-ai",
-    desc: "An AI that learns to beat you at rock-paper-scissors.",
-    link: "https://github.com/MePython313/RPS-ai",
-    site: "https://mepython313.github.io/RPS-ai/",
-    linkText: "repo ↗",
-  },
-  {
-    tag: "game",
-    title: "element-game",
-    desc: "Name as many elements as you can. Can you hit the leaderboard?",
-    link: "https://github.com/MePython313/element-game",
-    site: "https://mepython313.github.io/element-game/",
-    linkText: "repo ↗",
-  },
-  {
-    tag: "music",
-    title: "HyperPlayer-X",
-    desc: "My music player project — built for speed and dark-mode vibes.",
-    link: "https://github.com/MePython313/music-player",
-    site: "https://mepython313.github.io/music-player/",
-    linkText: "repo ↗",
-  },
-  {
-    tag: "video",
-    title: "Ad-free youtube",
-    desc: "Ad-free YouTube player with a built-in AdBlocker engine and watch history.",
-    link: "https://github.com/MePython313/ad-free",
-    site: "https://mepython313.github.io/ad-free/",
-    linkText: "repo ↗",
-  },
-  {
-    tag: "button",
-    title: "Useless button",
-    desc: "A game where you just have to click a useless button.",
-    link: "https://github.com/Mepython313/useless-button",
-    site: "https://mepython313.github.io/useless-button/",
-    linkText: "repo ↗",
-  },
-];
-
-function renderBuilds() {
-  const grid = document.getElementById("builds-grid");
-  grid.innerHTML = BUILDS.map(
-    (b) => `
-      <article class="card reveal">
-        <span class="card-tag">${b.tag}</span>
-        <h3>${b.title}</h3>
-        <p>${b.desc}</p>
-        <div class="card-links">
-          <a href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>
-          ${b.site ? `<a href="${b.site}" target="_blank" rel="noopener">site ↗</a>` : ""}
-        </div>
-      </article>`
-  ).join("");
-}
-
-/* ---------- scroll reveal ---------- */
-function initReveal() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-}
-
-/* ---------- console easter egg ---------- */
-function consoleEgg() {
-  console.log(
-    "%c🐍 MePython313 v2%c — thanks for peeking under the hood.\n%c> ./ship_it --now",
-    "color:#3dff8b;font-size:16px;font-weight:bold",
-    "color:#e6e6f0;font-size:13px",
-    "color:#00f0ff;font-size:13px;font-family:monospace"
-  );
-}
-
-/* ---------- boot ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
-  typewriter(TYPED_LINES, typeEl);
-  renderBuilds();
-  initReveal();
-  consoleEgg();
+navToggle?.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+  mobileNav.setAttribute('aria-hidden', String(!open));
+  navToggle.textContent = open ? 'close' : 'menu';
 });
+
+$$('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    if (navToggle) navToggle.textContent = 'menu';
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+$$('.reveal').forEach(el => observer.observe(el));
+
+const toast = $('#toast');
+let toastTimer;
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+$$('.copy-email').forEach(button => {
+  button.addEventListener('click', async () => {
+    const email = button.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      $('.copy-status', button.closest('.contact-actions')).textContent = 'copied to clipboard';
+      showToast('email copied');
+    } catch {
+      $('.copy-status', button.closest('.contact-actions')).textContent = email;
+      showToast(email);
+    }
+    setTimeout(() => {
+      const status = $('.copy-status', button.closest('.contact-actions'));
+      if (status) status.textContent = '';
+    }, 2200);
+  });
+});
+
+function confettiBurst(count = 90) {
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('span');
+    piece.className = 'confetti';
+    piece.style.left = `${Math.random() * 100}vw`;
+    piece.style.animationDuration = `${1.4 + Math.random() * 2.2}s`;
+    piece.style.animationDelay = `${Math.random() * .3}s`;
+    piece.style.background = `hsl(${Math.floor(Math.random() * 360)} 85% 70%)`;
+    piece.style.transform = `translateY(-20px) rotate(${Math.random() * 360}deg)`;
+    fragment.appendChild(piece);
+  }
+  document.body.appendChild(fragment);
+  setTimeout(() => $$('.confetti').forEach(node => node.remove()), 4200);
+}
+
+$('#secret-button')?.addEventListener('click', () => {
+  console.log('%cHey 👀', 'color:#68e4dc;font-size:18px;font-weight:700');
+  console.log('%cYou found the console easter egg. chaotic but ships.', 'color:#8ca5aa');
+  showToast('console easter egg unlocked');
+  confettiBurst();
+});
+
+console.log('%cPrakshit — chaotic but ships', 'color:#68e4dc;font-size:16px;font-weight:700');
+console.log('%cGitHub: https://github.com/MePython313/', 'color:#8ca5aa');
